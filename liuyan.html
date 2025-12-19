@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>留言板 | 三丽鸥</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            background: #fff5f8;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 导航栏 - 与之前一致 */
+        nav {
+            background: #f8e0e6;
+            padding: 14px 0;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            text-align: center;
+            font-size: 0;
+        }
+
+        nav a {
+            display: inline-block;
+            margin: 0 18px;
+            font-size: 16px;
+            color: #333;
+            transition: .3s;
+        }
+
+        nav a {
+            display: inline-block;
+            margin: 0 18px;
+            font-size: 16px;
+            color: #333;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #ff69b4;
+        }
+
+        /* 留言板整体：居中、与导航留空隙 */
+        .board {
+            width: 700px;
+            margin: 20px auto 0;
+            text-align: center;
+        }
+
+        .top {
+            background: pink;
+            color: #fff;
+            padding: 12px 0;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .top h1 {
+            font-size: 26px;
+            letter-spacing: 2px;
+        }
+
+        /* 留言列表：无灰底 */
+        ul {
+            width: 100%;
+            max-height: 260px;
+            overflow-y: auto;
+            border-left: 2px dashed pink;
+            border-right: 2px dashed pink;
+            border-bottom: 2px dashed pink;
+            padding: 10px 0;
+        }
+
+        li {
+            list-style: none;
+            width: 90%;
+            margin: 6px auto 0;
+            padding: 8px;
+            font-size: 16px;
+            background: none;
+            text-align: left;
+            position: relative;
+        }
+
+        .remove {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: 1px solid pink;
+            color: pink;
+            padding: 2px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .remove:hover {
+            background: pink;
+            color: #fff;
+        }
+
+        /* 输入与发布 */
+        textarea {
+            width:700px;
+            height: 60px;
+            margin: 15px auto 10px;
+            display: block;
+            resize: none;
+            outline: none;
+            border: 2px solid pink;
+            border-radius: 4px;
+            padding: 6px;
+        }
+
+        .fabu {
+            width: 120px;
+            height: 32px;
+            background: pink;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .fabu:hover {
+            background: #ff85b2;
+        }
+
+        .tu {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 200px;
+        }
+
+        .tu img {
+            width: 550px;
+            height: 335px;
+        }
+
+        /* ---- 页脚 ---- */
+        footer {
+            background: #fce4ec;
+            text-align: center;
+            padding: 32px 0;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 导航 -->
+    <nav>
+        <a href="index.html">首页</a>
+        <a href="jianjie.html">公司简介</a>
+        <a href="characters.html">角色介绍</a>
+        <a href="character-select.html">选择喜欢的角色</a>
+        <a href="liuyan.html">留言板</a>
+         <a href="reg.html">会员注册</a>
+    </nav>
+
+    <!-- 留言板 -->
+    <div class="board">
+        <div class="top">
+            <h1>留言板</h1>
+        </div>
+        <ul id="list"></ul>
+        <textarea id="txt" placeholder="请编辑您的留言"></textarea>
+        <button class="fabu" id="send">发布</button>
+    </div>
+
+    <div class="tu">
+        <img src="./image/3.jpeg" alt="">
+    </div>
+    <!-- 页脚 -->
+    <footer>© 25216950603张乐儿 三丽鸥主题站　All Rights Reserved.</footer>
+
+    <script>
+  // 2. 留言板功能
+    var ul = document.getElementById('list');//留言列表
+    var txt = document.getElementById('txt');//留言输入框
+    var send = document.getElementById('send');//发布按钮
+
+    // 预置留言
+    (() => {
+        var preset = ['支持三丽鸥', '给玉桂狗投票'];// 本身出现的留言内容
+        preset.forEach(text => {
+            var li = document.createElement('li');//创建li标签
+            li.textContent = text;//设置留言内容
+
+            var btn = document.createElement('button');//创建删除按钮
+            btn.className = 'remove';
+            btn.textContent = '删除';
+            btn.onclick = () => ul.removeChild(li);//点击删除
+
+            li.appendChild(btn);//按钮加在li里面
+            ul.appendChild(li);//li加在列表中
+        });
+    })();
+
+    // 发布留言
+    send.addEventListener('click', () => {
+        if (!txt.value.trim()) return alert('您没有输入任何信息！');//若输入为空，则提示
+
+        var li = document.createElement('li');
+        li.textContent = txt.value.trim();//获取输入内容
+        
+        var btn = document.createElement('button');
+        btn.className = 'remove';
+        btn.textContent = '删除';
+        btn.onclick = () => ul.removeChild(li);
+        li.appendChild(btn);
+        ul.insertBefore(li, ul.firstChild);//把新留言插入到列表的前面
+        txt.value = '';//清空输入框
+    });
+
+    </script>
+</body>
+
+</html>

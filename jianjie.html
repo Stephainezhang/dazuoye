@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公司简介 | 三丽鸥</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            background: #fff5f8;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* 导航栏 */
+        nav {
+            background: #f8e0e6;
+            padding: 14px 0;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            text-align: center;
+            font-size: 0;
+        }
+
+        nav a {
+            display: inline-block;
+            margin: 0 18px;
+            font-size: 16px;
+            color: #333;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #ff69b4;
+        }
+
+        /* 顶部横幅 */
+        .hero {
+            width: 100%;
+            height: 155px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, .35);
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            letter-spacing: 2px;
+        }
+
+        /* 图文两栏 */
+            .content {
+                width: 1100px;
+                margin: 60px auto;
+                padding: 0 20px;
+                display: grid;
+                /* 使用这个布局 */
+                grid-template-columns: 1fr 1fr;
+                /* 两列分布 */
+                gap: 40px;
+                align-items: center;
+            }
+
+        .text h2,
+        .buy h2 {
+            font-size: 32px;
+            color: #ff69b4;
+            margin-bottom: 16px;
+        }
+
+        .text p,
+        .buy p {
+            font-size: 17px;
+            text-align: justify;
+        }
+
+        .pic img {
+            width: 520px;
+            height: 280px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(255, 133, 162, .15);
+        }
+
+        /* ---- 核心语 ---- */
+        .slogan {
+            max-width: 780px;
+            margin: 80px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .slogan h2 {
+            font-size: 32px;
+            color: #ff69b4;
+            margin-bottom: 18px;
+        }
+
+        .slogan p {
+            font-size: 19px;
+        }
+
+        /* 理念四栏（平均分布）  */
+        .cards {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto 90px;
+            padding: 0 20px;
+            gap: 20px;
+        }
+
+        .card {
+            flex: 1;
+            text-align: center;
+        }
+
+        .card h3 {
+            font-size: 24px;
+            color: #ff69b4;
+            margin-bottom: 14px;
+        }
+
+        .card p {
+            font-size: 16px;
+        }
+
+        /* ---- 使命 ---- */
+        .mission,
+        .guides {
+            padding: 70px 20px;
+            text-align: center;
+            background: #fff5f8;
+        }
+
+        .mission h2,
+        .guides h2 {
+            font-size: 32px;
+            color: #ff69b4;
+            margin-bottom: 20px;
+        }
+
+        .mission p {
+            font-size: 19px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* ---- 页脚 ---- */
+        footer {
+            background: #fce4ec;
+            text-align: center;
+            padding: 32px 0;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 导航 -->
+    <nav>
+        <a href="index.html">首页</a>
+        <a href="jianjie.html">公司简介</a>
+        <a href="characters.html">角色介绍</a>
+        <a href="character-select.html">选择喜欢的角色</a>
+        <a href="liuyan.html">留言板</a>
+        <a href="reg.html">会员注册</a>
+    </nav>
+
+    <!-- 顶部大图 -->
+    <div class="hero">
+        <h1>公司简介</h1>
+    </div>
+
+    <!-- 图文两栏 -->
+    <div class="content">
+        <div class="pic">
+            <img src="./image/zhuanmaidian.png" alt="三丽鸥专卖店">
+        </div>
+        <div class="buy">
+            <h2>三丽鸥专卖店</h2>
+            <p>三丽鸥店铺不仅仅是一个购物场所，更是一个传达心意，培养友情的地方。GIFT GATE的顾客范围比较广泛，涵盖各个年龄层的消费群体。</p>
+        </div>
+    </div>
+
+    <div class="content" style="margin-top:40px;">
+        <div class="text">
+            <h2>关于我们</h2>
+            <p>三丽鸥股份有限公司是日本 SANRIO 授权成立的合资子公司，专注 IP 运营与推广。自成立以来，我们以「打造治愈系生活方式」为核心，围绕 Hello
+                Kitty、美乐蒂、玉桂狗等经典角色，开发周边产品、主题活动、线上内容等多元服务，让可爱文化融入日常，为全球粉丝持续带来快乐与温暖。</p>
+        </div>
+        <div class="pic">
+            <img src="./image/1.jpg" alt="公司简介图">
+        </div>
+    </div>
+
+    <div class="content" style="margin-top:40px;">
+        <div class="pic">
+            <img src="./image/shiming.png" alt="企业环境">
+        </div>
+        <div class="text">
+            <h2>企业使命</h2>
+            <p>我们坚持「用户第一、创意驱动」，不断推出安全、安心且充满惊喜的商品与体验；同时积极投身公益与环保，以实际行动回馈社会，与粉丝一起构建充满笑容与善意的世界。</p>
+        </div>
+    </div>
+
+    <!-- 核心语 -->
+    <section class="slogan">
+        <h2>三丽鸥的信念</h2>
+        <p>自1960年创立以来，我们始终相信「可爱」具有跨越语言、年龄与文化的力量，能为人们的日常生活注入温暖与幸福。</p>
+    </section>
+
+    <!-- 理念四栏（平均分布） -->
+    <div class="cards">
+        <div class="card">
+            <h3>传递幸福</h3>
+            <p>通过角色与故事，把纯粹的快乐送到每个人心底，让世界多一点温柔。</p>
+        </div>
+        <div class="card">
+            <h3>创造惊喜</h3>
+            <p>不断挖掘新鲜创意，用意想不到的设计与体验，点亮平凡的日子。</p>
+        </div>
+        <div class="card">
+            <h3>珍视友情</h3>
+            <p>角色间的陪伴与包容，提醒人们关怀彼此，建立长久而真挚的连结。</p>
+        </div>
+        <div class="card">
+            <h3>拥抱梦想</h3>
+            <p>守护内心的纯真与想象力，鼓励大家勇敢追梦，让世界更加多彩。</p>
+        </div>
+    </div>
+
+    <!-- 使命 -->
+    <section class="mission">
+        <h2>我们的使命</h2>
+        <p>以温柔、创意与可爱为核心，打造触动心灵的商品与体验；通过角色与故事连接世界，共同构建充满笑容与善意的社会。</p>
+    </section>
+
+    <!-- 页脚 -->
+       <footer>© 25216950603张乐儿 三丽鸥主题站　All Rights Reserved.</footer>
+</body>
+
+</html>

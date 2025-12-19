@@ -1,0 +1,220 @@
+</html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>角色介绍 | 三丽鸥</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            background: #fff5f8;
+            color: #555;
+            text-align: center;
+        }
+
+        nav {
+            background: #fce4ec;
+            padding: 18px 0;
+            position: sticky;
+            top: 0;
+            text-align: center;
+            font-size: 0;
+        }
+
+        nav a {
+            margin: 0 18px;
+            color: #000;
+            font-size: 16px;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #ff69b4;
+        }
+
+        /* 搜索框靠右 */
+        .search-box {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .search-box input {
+            width: 220px;
+            padding: 6px 10px;
+            border: 2px solid #ff69b4;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        h1 {
+            margin: 70px 0;
+            font-size: 42px;
+            color: #fff;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, .35);
+        }
+
+        .jiu {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            width: 1100px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        .cell {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(255, 133, 162, .12);
+            transition: .3s;
+        }
+
+        .cell:hover {
+            transform: translateY(-4px);
+        }
+
+        .cell img.main {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .name {
+            padding: 12px 10px 6px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #ff69b4;
+        }
+
+        .tips {
+            padding: 0 10px 16px;
+            font-size: 15px;
+            color: #777;
+        }
+
+
+        /* @media(max-width:768px) {
+            .jiu {
+                grid-template-columns: repeat(2, 1fr);
+                width: 100%;
+            }
+        } */
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+            width: 100%;
+        }
+
+        /* 3. 页脚自然沉底 */
+        footer {
+            background: #fce4ec;
+            text-align: center;
+            padding: 32px 0;
+            font-size: 14px;
+            color: #777;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="index.html">首页</a>
+        <a href="jianjie.html">公司简介</a>
+        <a href="characters.html">角色介绍</a>
+        <a href="character-select.html">选择喜欢的角色</a>
+        <a href="liuyan.html">留言板</a>
+        <a href="reg.html">会员注册</a>
+        <span class="search-box">
+            <input id="searchInput" type="text" placeholder="搜索角色..." maxlength="10">
+        </span>
+    </nav>
+
+    <h1>三丽鸥明星阵容</h1>
+    <div class="jiu" id="grid"></div>
+    <!-- 页脚 -->
+    <footer>© 25216950603张乐儿 三丽鸥主题站　All Rights Reserved.</footer>
+
+    <script>
+        /* 角色数据 */
+        var data = [
+            { name: '凯蒂猫', tips: '来自伦敦的温柔女孩，用蝴蝶结传递友情。', main: './image/kitty2.jpeg', more: ['./image/kitty_more1.jpg', './image/kitty_more2.jpg', './image/kitty_more3.jpg'] },
+            { name: '酷洛米', tips: '调皮头巾兔，小叛逆也有大勇气。', main: './image/ku2.webp', more: ['./image/ku_more1.jpg', './image/ku_more2.jpg', './image/ku_more3.jpg'] },
+            { name: '美乐蒂', tips: '粉色帽子小兔子，最爱唱歌与烘焙。', main: './image/mei2.jpg', more: ['./image/mei_more1.jpg', './image/mei_more2.jpg', './image/mei_more3.jpg'] },
+            { name: '大耳狗', tips: '云朵耳朵会飞，专精治愈与晒太阳。', main: './image/yuguigou.jpg', more: ['./image/cin_more1.jpg', './image/cin_more2.jpg', './image/cin_more3.jpg'] },
+            { name: '酷企鹅', tips: '冰山来的酷小子，其实内心很热情。', main: './image/qie.webp', more: ['./image/badtz_more1.jpg', './image/badtz_more2.jpg', './image/badtz_more3.jpg'] },
+            { name: '布丁狗', tips: '贝雷帽美食家，人生目标是吃好睡饱。', main: './image/buding2.jpg', more: ['./image/pudding_more1.jpg', './image/pudding_more2.jpg', './image/pudding_more3.jpg'] },
+            { name: '帕恰狗', tips: '运动系小狗，篮球和散步永远满分。', main: './image/paqia2.jpeg', more: ['./image/pochacco_more1.jpg', './image/pochacco_more2.jpg', './image/pochacco_more3.jpg'] },
+            { name: '毛毯熊', tips: '裹在毛毯里的慵懒小熊，专治不开心。', main: './image/maotan.jpeg', more: ['./image/moketa_more1.jpg', './image/moketa_more2.jpg', './image/moketa_more3.jpg'] },
+            { name: '更多角色...', tips: '三丽鸥大家庭，还在不断壮大中~', main: './image/xiaomaifen.jpg', more: [] }
+        ];
+        // 方便加载
+        var moreRole = { name: '更多角色...', tips: '三丽鸥大家庭，还在不断壮大中~', main: './image/xiaomaifen.jpg', more: [] };
+        render(data);
+        //空容器
+        function render(list) {
+            var grid = document.getElementById('grid');
+            grid.innerHTML = '';
+            // 清空旧内容（支持反复调用）
+
+            list.forEach(item => { // 遍历数组
+                var cell = document.createElement('div');
+                cell.className = 'cell';
+                
+                // 用模板字符串给卡片填充内容
+                cell.innerHTML = `
+            <img class="main" src="${item.main}" alt="${item.name}">
+            <div class="name">${item.name}</div>
+            <div class="tips">${item.tips}</div> `;
+                grid.appendChild(cell);
+                // 图片放入容器grid中
+            });
+        }
+
+        /* 初始展示  */
+        render(data);
+
+        /* 回车按键搜索 */
+        var input = document.getElementById('searchInput');
+        function doSearch() {
+            var key = input.value.trim();//trim用于清除空格干扰
+            if (!key) return render(data);//空的话显示全部
+
+            // 在 data 里找第一个“名字包含关键字”的项
+            var found = data.find(item => item.name.includes(key));
+            render(found ? [found] : [moreRole]);
+        }
+        input.addEventListener('keydown', e => {//e是事件对象
+            if (e.key === 'Enter') doSearch();
+        });//按回车就搜索
+
+        input.addEventListener('blur', doSearch);//鼠标点其他地方也是搜索
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页 | 三丽鸥</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* 宽高包含内边距/边框，避免布局错乱 */
+            font-family: "Microsoft YaHei", sans-serif;
+            /* 统一字体 */
+        }
+
+        body {
+            background: #fff5f8;
+            /* 全局浅粉色背景 */
+            color: #555;
+            line-height: 1.8;
+            /* 行高 */
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            /* 页脚固定 */
+        }
+
+        a {
+            text-decoration: none;
+            /* 去掉下划线 */
+            color: inherit;
+            /* 链接继承父元素颜色，统一风格 */
+        }
+
+        main {
+            flex: 1;
+            /* 让main占满body剩余空间，实现页脚固定在底部 */
+            width: 100%;
+        }
+
+        /* 页面区域默认隐藏，只显示首页 */
+        .page-section {
+            display: none;
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        .page-section:first-of-type {
+            display: block;
+            /* 只显示第一个页面（首页） */
+        }
+
+        /* 导航栏样式（移除搜索框相关样式） */
+        nav {
+            background: #f8e0e6;
+            padding: 14px 0;
+            position: sticky;
+            /* 粘性导航：滚动时固定在顶部 */
+            top: 0;
+            z-index: 99;
+            /* 层级置顶，避免被其他元素遮挡 */
+            text-align: center;
+            font-size: 0;
+        }
+
+        nav a {
+            display: inline-block;
+            margin: 0 18px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        nav a:hover {
+            color: #ff69b4;
+        }
+
+        /* 首页轮播横幅 */
+        .banner {
+            position: relative;
+            width: 1000px;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 16px;
+            margin: 20px auto;
+            max-width: 1200px;
+            box-shadow: 0 8px 24px rgba(255, 133, 162, .15);
+        }
+
+        .banner-inner {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform .4s ease;
+        }
+
+        .banner-inner img {
+            width: 33.333%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, .6);
+            border-radius: 50%;
+        }
+
+        .dot.active {
+            background: #ff69b4;
+        }
+
+        /* 首页社长寄语 */
+        .message-section {
+            width: 1100px;
+            margin: 60px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .message-section img {
+            width: 460px;
+            height: 560px;
+            border-radius: 16px;
+            margin: 0 auto;
+            box-shadow: 0 8px 24px rgba(255, 133, 162, .15);
+        }
+
+        .message-section h2 {
+            font-size: 30px;
+            color: #ff69b4;
+            margin-bottom: 16px;
+        }
+
+        .message-section p {
+            font-size: 16px;
+            text-align: justify;
+        }
+
+        /* 首页事业范围 */
+        .business {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .business h2 {
+            text-align: center;
+            font-size: 32px;
+            color: #ff69b4;
+            margin-bottom: 30px;
+        }
+
+        .biz-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
+        .biz-card {
+            width: 31%;
+            text-align: center;
+            background: none;
+            padding: 0;
+            border-radius: 0;
+            box-shadow: none;
+            margin-right: 1.5%;
+            /* 列之间的间距 */
+            margin-bottom: 30px;
+            /* 行之间的间距 */
+        }
+
+        .biz-card h3 {
+            font-size: 20px;
+            color: #ff69b4;
+            margin-bottom: 10px;
+        }
+
+        .biz-card p {
+            font-size: 15px;
+        }
+
+        /* 首页全球版图 */
+        .global {
+            text-align: center;
+            margin: 60px auto 40px;
+        }
+
+        .global h2 {
+            font-size: 35px;
+            color: #ff69b4;
+            margin-bottom: 20px;
+        }
+
+        .global p {
+            font-size: 18px;
+            margin-top: 16px;
+        }
+
+        /* 页脚 */
+        footer {
+            background: #f8e0e6;
+            text-align: center;
+            padding: 24px 0;
+            font-size: 14px;
+            color: #777;
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 导航 -->
+    <nav>
+        <a href="index.html">首页</a>
+        <a href="jianjie.html">公司简介</a>
+        <a href="characters.html">角色介绍</a>
+        <a href="character-select.html">选择喜欢的角色</a>
+        <a href="liuyan.html">留言板</a>
+        <a href="reg.html">会员注册</a>
+    </nav>
+
+    <!-- 轮播横幅 -->
+    <div class="banner">
+        <div class="banner-inner" id="bannerInner">
+            <img src="./image/1.jpg" alt="One World">
+            <img src="./image/2.jpeg" alt="Connecting Smiles">
+            <img src="./image/3.jpeg" alt="Sanrio Family">
+        </div>
+        <div class="dots" id="dots"></div>
+    </div>
+
+    <!-- 社长寄语 -->
+    <section class="message-section">
+        <div class="text">
+            <h2>社长寄语</h2>
+            <p>衷心感谢诸位多年来对三丽鸥和三丽鸥家族成员的支持。自公司成立以来，在「みんなnakayoku」这一企业理念的引领下，我们最大的愿望是为人们建立紧密相连的羁绊。</p>
+            <p>放眼历史，我们的成长归功于各位粉丝长久以来对三丽鸥家族的喜爱与支持。但我们不能墨守成规，而是要持续发展以满足时代的需求。我们将持续探索新的商业模式，在必要时启动体制改革，开发创新业务，并不断努力发展成为一家与时俱进的全球性娱乐企业。
+            </p>
+            <p>2021年，我们确立了“同一个世界，微笑相连”的新愿景，它源于「人人和睦相处」的企业理念。我们致力于通过不断地为每个人带来笑容，并将幸福的氛围传递给全世界。相信我们带来的娱乐就是实现这一愿景的方式。</p>
+            <p>世界各地正不断发生变化，一成不变并非上策，在娱乐行业也别无二致。尽管娱乐的本质并未改变，但我们体验娱乐的方式，包括购买行为和用户体验，都在发生巨大的变化。三丽鸥将与时俱进，在产品设计、门店开发、商业授权等方面引领潮流，持续提升粉丝的消费体验。
+            </p>
+            <p>同时，三丽鸥也将为娱乐赋能，并期待看到下一代人的乐趣与幸福是由大家共创的。作为一家企业，在坚守初心的同时，我们将继续改革、大胆创新。即便身处不确定性的世界，三丽鸥也将坚持不懈，努力成为一家能够帮助世界各地人们和睦相处的企业，并继续为所有人创造更多充满微笑、和平与幸福的时刻。
+            </p>
+        </div>
+        <img src="./image/3-1.png" alt="社长寄语">
+    </section>
+    <!-- 事业范围 -->
+    <section class="business">
+        <h2>事业范围</h2>
+        <div class="biz-grid">
+            <div class="biz-card">
+                <h3>商品授权</h3>
+                <p>涵盖文具、服饰、家居、食品等全品类周边，让角色走进日常生活。</p>
+            </div>
+            <div class="biz-card">
+                <h3>内容制作</h3>
+                <p>动画、短视频、游戏及数字藏品，持续输出温暖故事与可爱力量。</p>
+            </div>
+            <div class="biz-card">
+                <h3>主题公园</h3>
+                <p>Hello Kitty 乐园、彩虹乐园等线下体验，沉浸式感受三丽鸥世界。</p>
+            </div>
+            <div class="biz-card">
+                <h3>门店零售</h3>
+                <p>中国大陆、港澳台、日韩及东南亚数百家直营与授权门店同步发售。</p>
+            </div>
+            <div class="biz-card">
+                <h3>大型活动</h3>
+                <p>主题展览、快闪店、粉丝见面会，把惊喜带到每一座城市。</p>
+            </div>
+            <div class="biz-card">
+                <h3>全球授权</h3>
+                <p>与世界各地品牌跨界合作，共同传递「Small Gift, Big Smile」。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 全球版图 -->
+    <section class="global">
+        <h2>三丽鸥全球足迹</h2>
+        <p>业务遍及日本、中国大陆、港澳台、韩国、东南亚、欧美及巴西等 130+ 国家和地区</p>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>© 25216950603张乐儿 三丽鸥主题站　All Rights Reserved.</footer>
+
+    <!-- 轮播脚本 -->
+    <script>
+
+        //  首页轮播功能
+        var inner = document.getElementById('bannerInner');
+        var dotsBox = document.getElementById('dots');
+
+        // 先判断核心元素是否存在，避免报错
+        if (inner && dotsBox) {
+            let idx = 0; // 轮播图索引
+            let timer;   // 定时器变量
+
+            // 1. 创建3个轮播点
+            for (let i = 0; i < 3; i++) {//只有三张图片，所以循环3次
+                var dot = document.createElement('span'); // 创建span元素（单个轮播点）
+                dot.className = 'dot';
+                dotsBox.appendChild(dot); // 把轮播点添加到轮播点容器中
+            }
+            var dots = dotsBox.querySelectorAll('.dot');
+            // 获取所有轮播点元素，存到dots数组
+
+            // 跳转到指定索引的轮播图
+            function goTo(index) {
+                idx = index;
+                // 计算偏移量，切换轮播图，idx=0，不偏移显示第一张，
+                // idx=1，-33.333%，显示第二张，以此类推
+                inner.style.transform = `translateX(-${idx * 33.333}%)`;
+                // 切换轮播点的激活状态
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === idx);
+                });
+            }
+
+            // 切换到下一张（到最后一张则回到第一张）
+            function nextSlide() {
+                goTo((idx + 1) % 3);
+            }
+            
+            // 默认显示第一张，激活第一个轮播点
+            goTo(0);
+            timer = setInterval(nextSlide, 3000);
+
+            //  点击轮播点切换
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                    // 点击后重置自动轮播（避免点击后立刻切换）
+                    clearInterval(timer);
+                    goTo(i);
+                    timer = setInterval(nextSlide, 3000);
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

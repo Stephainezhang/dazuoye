@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择你喜欢的三丽鸥角色</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* 改变盒模型计算方式 */
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            background: #fff5f8;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 导航栏 - 全站同款 */
+        nav {
+            background: #f8e0e6;
+            padding: 14px 0;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            text-align: center;
+            font-size: 0;
+        }
+
+        nav a {
+            display: inline-block;
+            margin: 0 18px;
+            font-size: 16px;
+            color: #333;
+            position: relative;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #ff69b4;
+        }
+
+        /* 顶部横幅 - 与角色介绍页同高同圆角 */
+        .hero {
+            width: 100%;
+            height: 165px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, .4);
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            letter-spacing: 3px;
+        }
+
+        /* 九宫格选择区 */
+        .role-area {
+            width: 1100px;
+            height: 1000px;
+            margin: 60px 60px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            height: 450px;
+            width: 350px;
+            box-shadow: 0 8px 24px rgba(255, 133, 162, .12); 
+            /* 告诉别人这个可以点击 */
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card .info {
+            padding: 0;
+            text-align: center;
+        }
+
+        .card .info h3 {
+            font-size: 22px;
+            color: #ff69b4;
+            margin-bottom: 6px;
+        }
+
+        .card .info p {
+            font-size: 15px;
+            color: #777;
+        }
+
+        /* 选中状态 */
+        .card.selected {
+            border: 3px solid #ff69b4;
+            box-shadow: 0 0 12px rgba(255, 105, 180, .35);
+        }
+
+        /* 确定按钮 */
+        .confirm-btn {
+            display: block;
+            width: 200px;
+            margin: 40px auto 60px;
+            padding: 12px 0;
+            background: #ff69b4;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+        }
+
+        .confirm-btn:hover {
+            background: #ff1493;
+        }
+
+        .confirm-btn:disabled {
+            background: #ccc;
+        }
+
+        /* 成功提示 */
+        .success-message {
+            position: fixed;
+            text-align: center;
+            display: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* 确保在画面正中间 */
+            background: #fff;
+            padding: 30px 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            /* 最上面 */
+        }
+
+        .success-message h2 {
+            color: #ff69b4;
+            margin-bottom: 15px;
+        }
+
+        .success-message p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        /* 遮罩层 */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 999;
+            /* 确保遮罩层在上面 */
+        }
+
+        /* 页脚样式 */
+        footer {
+            background: #fce4ec;
+            text-align: center;
+            padding: 32px 0;
+            font-size: 14px;
+            color: #777;
+            width: 100%;
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <a href="index.html">首页</a>
+        <a href="jianjie.html">公司简介</a>
+        <a href="characters.html">角色介绍</a>
+        <a href="character-select.html">选择喜欢的角色</a>
+        <a href="liuyan.html">留言板</a>
+        <a href="reg.html">会员注册</a>
+    </nav>
+
+    <!-- 顶部大图横幅 -->
+    <div class="hero">
+        <h1>选择你的三丽鸥伙伴</h1>
+    </div>
+
+    <!-- 九宫格角色选择 -->
+    <div class="role-area">
+        <div class="card" data-name="Hello Kitty">
+            <img src="./image/kitty.jpeg" alt="Hello Kitty">
+            <div class="info">
+                <h3>Hello Kitty</h3>
+                <p>来自伦敦的温柔女孩</p>
+            </div>
+        </div>
+
+        <div class="card" data-name="大耳狗">
+            <img src="./image/daergou.jpeg" alt="大耳狗">
+            <div class="info">
+                <h3>大耳狗</h3>
+                <p>软萌云朵小狗</p>
+            </div>
+        </div>
+
+        <div class="card" data-name="酷洛米">
+            <img src="./image/kuluomi.jpeg" alt="酷洛米">
+            <div class="info">
+                <h3>酷洛米</h3>
+                <p>傲娇小黑猫</p>
+            </div>
+        </div>
+
+        <div class="card" data-name="帕恰狗">
+            <img src="./image/paqia.jpeg" alt="帕恰狗">
+            <div class="info">
+                <h3>帕恰狗</h3>
+                <p>元气运动小狗</p>
+            </div>
+        </div>
+
+        <div class="card" data-name="美乐蒂">
+            <img src="./image/meiledi.jpg" alt="美乐蒂">
+            <div class="info">
+                <h3>美乐蒂</h3>
+                <p>温柔兔子公主</p>
+            </div>
+        </div>
+
+        <div class="card" data-name="布丁狗">
+            <img src="./image/buding.jpg" alt="布丁狗">
+            <div class="info">
+                <h3>布丁狗</h3>
+                <p>慵懒布丁小狗</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 确定按钮 -->
+    <button class="confirm-btn" id="confirmBtn" disabled>确定</button>
+
+    <!-- 遮罩层 -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- 成功提示 -->
+    <div class="success-message" id="successMessage">
+        <h2>选择成功！</h2>
+    </div>
+
+    <!-- 页脚 -->
+        <footer>© 25216950603张乐儿 三丽鸥主题站　All Rights Reserved.</footer>
+
+    <script>
+        var cards = document.querySelectorAll('.card');
+        var confirmBtn = document.getElementById('confirmBtn');
+        var overlay = document.getElementById('overlay');
+        var successMessage = document.getElementById('successMessage');
+        var selectedCharacterText = document.getElementById('selectedCharacter');
+
+        let selectedCharacter = '';
+
+        // 卡片点击事件
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                // 移除所有选中状态
+                cards.forEach(c => c.classList.remove('selected'));
+                // 添加当前选中状态
+                card.classList.add('selected');
+                // 获取选中的角色名
+                selectedCharacter = card.dataset.name;
+                // 启用确定按钮
+                confirmBtn.disabled = false;
+            });
+        });
+
+        // 确定按钮点击事件
+        confirmBtn.addEventListener('click', () => {
+            if (selectedCharacter) {
+                // 开启显示遮罩层和成功提示
+                overlay.style.display = 'block';
+                successMessage.style.display = 'block';
+                
+                // 3秒后自动关闭
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    successMessage.style.display = 'none';
+                }, 3000);
+            }
+        });
+
+        // 点击遮罩层关闭提示
+        overlay.addEventListener('click', () => {
+            overlay.style.display = 'none';
+            successMessage.style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>
